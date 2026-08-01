@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 120" width="100%" height="100%">
+  <!-- Interlocking Logo Mark -->
+  <g transform="translate(10, 10)">
+    <!-- Left Loop (slightly offset to interlock) -->
+    <path d="M 60,10 C 87.6,10 110,32.4 110,60 C 110,87.6 87.6,110 60,110 C 32.4,110 10,87.6 10,60 C 10,32.4 32.4,10 60,10 Z" fill="none" stroke="#2555a5" stroke-width="16" />
+    <!-- Right Loop -->
+    <path d="M 100,10 C 127.6,10 150,32.4 150,60 C 150,87.6 127.6,110 100,110 C 72.4,110 50,87.6 50,60 C 50,32.4 72.4,10 100,10 Z" fill="none" stroke="#2555a5" stroke-width="16" />
+    <!-- Central interlocking highlight circle/dot -->
+    <circle cx="80" cy="60" r="11" fill="#2555a5" />
+    
+    <!-- Masking/Layering arcs to create a realistic interlocking link visual -->
+    <path d="M 60,10 C 75,10 88,20 94,33" fill="none" stroke="#2555a5" stroke-width="16" />
+    <path d="M 100,110 C 85,110 72,100 66,87" fill="none" stroke="#2555a5" stroke-width="16" />
+  </g>
+  <!-- Text ConnectLocal -->
+  <text x="185" y="78" font-family="'Poppins', sans-serif" font-size="52" font-weight="700" fill="#2555a5" letter-spacing="-1">ConnectLocal</text>
+</svg>

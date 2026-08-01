@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConnectLocal - Hyperlocal Service Marketplace</title>
+    <!-- Meta Descriptions for SEO -->
+    <meta name="description" content="ConnectLocal connects you with verified local service providers like electricians, plumbers, gardeners, and tutors in your neighborhood. Quick, easy, and secure.">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Style Sheets -->
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/landing.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <!-- Sticky Navigation Bar -->
+    <nav class="glass-nav navbar">
+        <div class="logo">
+            <img src="assets/logo/logo.svg" alt="ConnectLocal Logo" style="height: 44px; width: auto; display: block;">
+        </div>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="#" class="nav-link active">Home</a></li>
+            <li><a href="#services" class="nav-link">Find Services</a></li>
+            <li><a href="#about" class="nav-link">About Us</a></li>
+            <li><a href="#" class="nav-link" id="nav-become-provider">Become a Provider</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <!-- Dynamically populated via app.js depending on login status -->
+            <div id="auth-buttons">
+                <a href="pages/login.html" class="btn btn-secondary">Log In</a>
+                <a href="pages/signup.html" class="btn btn-primary">Sign Up</a>
+            </div>
+            <div id="user-profile-menu" style="display: none; align-items: center; gap: 14px;">
+                <span class="user-greeting" id="user-greeting" style="font-weight: 500; font-size: 14px;"></span>
+                <a href="#" id="dashboard-btn" class="btn btn-primary">Dashboard</a>
+                <button onclick="Utils.logout()" class="btn btn-secondary" style="padding: 10px 16px;">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Find Trusted Help, <br><span>Anywhere Nearby</span></h1>
+                <p>Connect with high-quality local professionals for everything from electrical emergencies and plumbing repairs to gardening and tutoring.</p>
+                
+                <!-- Quick Search Area -->
+                <div class="search-wrapper">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="hero-search-input" placeholder="What service do you need?">
+                    </div>
+                    <div class="search-box">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <select id="hero-category-select">
+                            <option value="">All Categories</option>
+                            <option value="Electrician">Electrician</option>
+                            <option value="Plumber">Plumber</option>
+                            <option value="Tutor">Tutor</option>
+                            <option value="Cleaning">Cleaning</option>
+                            <option value="Handyman">Handyman</option>
+                            <option value="Pet Care">Pet Care</option>
+                            <option value="Gardening">Gardening</option>
+                        </select>
+                    </div>
+                    <button type="button" id="hero-search-btn" class="btn btn-primary">Search</button>
+                </div>
+
+                <!-- Floating Stats -->
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">10k+</span>
+                        <span class="stat-label">Verified Pros</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">4.9/5</span>
+                        <span class="stat-label">Average Rating</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">200k+</span>
+                        <span class="stat-label">Jobs Done</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-image-wrapper">
+                <div class="hero-circle-bg"></div>
+                <!-- Premium Vector illustration Placeholder from Unsplash -->
+                <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80" alt="ConnectLocal Services illustration" class="hero-img" width="420" height="420">
+                
+                <!-- Floating badges -->
+                <div class="floating-badge badge-1">
+                    <i class="fas fa-shield-alt"></i>
+                    <div class="badge-text">
+                        <h4>Verified Experts</h4>
+                        <p>100% Background checked</p>
+                    </div>
+                </div>
+                <div class="floating-badge badge-2">
+                    <i class="fas fa-clock"></i>
+                    <div class="badge-text">
+                        <h4>Quick Response</h4>
+                        <p>Under 30 mins average</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services Categories Section -->
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Popular Services</h2>
+                <p>Explore some of our highly-rated local services provided by trusted experts in your neighborhood.</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Electrician Card -->
+                <div class="card service-card-landing" onclick="navigateToSearch('Electrician')">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Electricians</h3>
+                    <p>Wiring upgrades, safety inspections, fixtures & installations.</p>
+                </div>
+
+                <!-- Plumber Card -->
+                <div class="card service-card-landing" onclick="navigateToSearch('Plumber')">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-faucet"></i>
+                    </div>
+                    <h3>Plumbing</h3>
+                    <p>Leak repairs, drain cleaning, water heater setups & piping.</p>
+                </div>
+
+                <!-- Tutor Card -->
+                <div class="card service-card-landing" onclick="navigateToSearch('Tutor')">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Tutors</h3>
+                    <p>Personalized lessons for Math, Sciences, Languages & Test Preps.</p>
+                </div>
+
+                <!-- Cleaning Card -->
+                <div class="card service-card-landing" onclick="navigateToSearch('Cleaning')">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-broom"></i>
+                    </div>
+                    <h3>Cleaning</h3>
+                    <p>Deep cleaning, routine maid services, and office sanitization.</p>
+                </div>
+
+                <!-- Handyman Card -->
+                <div class="card service-card-landing" onclick="navigateToSearch('Handyman')">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Handyman</h3>
+                    <p>Furniture assembly, TV mounting, drywall repairs & repairs.</p>
+                </div>
+
+                <!-- Pet Care Card -->
+                <div class="card service-card-landing" onclick="navigateToSearch('Pet Care')">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-paw"></i>
+                    </div>
+                    <h3>Pet Care</h3>
+                    <p>Dog walking, home pet sitting, grooming, and training.</p>
+                </div>
+
+                <!-- Gardening Card -->
+                <div class="card service-card-landing" onclick="navigateToSearch('Gardening')">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>Gardening</h3>
+                    <p>Lawn mowing, landscaping, hedge trimming & weeding.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About / Why Choose Us Section -->
+    <section class="section why-section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose ConnectLocal?</h2>
+                <p>We provide a reliable platform that makes discovering and hiring local service providers simple, transparent, and completely secure.</p>
+            </div>
+
+            <div class="why-grid">
+                <div class="card why-card">
+                    <div class="why-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <h3>Vetted Professionals</h3>
+                    <p>We background check and verify credentials for every professional listed on our platform.</p>
+                </div>
+
+                <div class="card why-card">
+                    <div class="why-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Flexible Booking</h3>
+                    <p>Select dates and time slots that fit your active lifestyle with instant confirmation.</p>
+                </div>
+
+                <div class="card why-card">
+                    <div class="why-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3>Upfront Pricing</h3>
+                    <p>No hidden charges. Check hourly rates and compare profiles before you finalize a contract.</p>
+                </div>
+
+                <div class="card why-card">
+                    <div class="why-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Community Trust</h3>
+                    <p>Read honest, verified reviews written by neighbors in your hyperlocal community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call To Action -->
+    <section class="section">
+        <div class="container">
+            <div class="cta-section">
+                <div>
+                    <h2>Ready to get started?</h2>
+                    <p>Find verified service professionals in your area, or expand your client base by listing your local services on ConnectLocal.</p>
+                </div>
+                <div class="cta-buttons">
+                    <a href="pages/signup.html?role=seeker" class="btn btn-outline-white">Hire a Pro</a>
+                    <a href="pages/signup.html?role=provider" class="btn btn-primary" style="background-color: var(--white); color: var(--primary-color);">Offer Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="assets/logo/logo.svg" alt="ConnectLocal Logo" style="height: 48px; width: auto; margin-bottom: 20px; display: block; filter: brightness(0) invert(1);">
+                    <p>Your ultimate hyperlocal service marketplace connecting homeowners with high-quality service professionals in the community.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h4>For Seeker</h4>
+                    <ul>
+                        <li><a href="#services">Browse Categories</a></li>
+                        <li><a href="pages/signup.html">Create Seeker Account</a></li>
+                        <li><a href="pages/login.html">Login Portal</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>For Providers</h4>
+                    <ul>
+                        <li><a href="pages/signup.html?role=provider">Become a Partner</a></li>
+                        <li><a href="pages/login.html">Provider Portal</a></li>
+                        <li><a href="#">Merchant Rules</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Safety & Vetting</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 ConnectLocal. All rights reserved.</p>
+                <p>Designed with <i class="fas fa-heart" style="color: var(--error);"></i> as a Final-Year Java Full Stack Project.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- App Module Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

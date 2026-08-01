@@ -1,0 +1,384 @@
+/**
+ * ConnectLocal Provider Dashboard Stylesheet
+ */
+
+@import url('service-seeker.css');
+
+/* Statistics Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    transition: var(--transition-smooth);
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.stat-icon-earnings { background-color: #e0f2fe; color: #0284c7; }
+.stat-icon-bookings { background-color: #dcfce7; color: #15803d; }
+.stat-icon-requests { background-color: #fef3c7; color: #b45309; }
+.stat-icon-rate { background-color: #f3e8ff; color: #7e22ce; }
+
+.stat-details h3 {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--dark);
+    line-height: 1.1;
+    margin-bottom: 4px;
+}
+
+.stat-details p {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Two Column Dashboard Grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 30px;
+    align-items: start;
+    margin-bottom: 40px;
+}
+
+.dashboard-panel {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 28px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    margin-bottom: 30px;
+}
+
+.dashboard-panel h2 {
+    font-size: 18px;
+    color: var(--panel-color);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Recent Requests Card Layout */
+.request-card {
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: var(--transition-smooth);
+}
+.request-card:hover {
+    box-shadow: var(--shadow-sm);
+    border-color: rgba(53, 93, 183, 0.3);
+}
+
+.request-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.request-client {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--dark);
+}
+
+.request-date {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.request-details {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    background-color: var(--light-grey);
+    padding: 10px 14px;
+    border-radius: 8px;
+    border-left: 3px solid var(--primary-color);
+}
+
+.request-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.request-actions button {
+    flex: 1;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.btn-accept {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+.btn-accept:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-decline {
+    background-color: var(--white);
+    color: var(--error);
+    border: 1px solid var(--error);
+}
+.btn-decline:hover {
+    background-color: rgba(239, 68, 68, 0.05);
+}
+
+/* Today's Schedule Rows */
+.schedule-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+.schedule-item:last-child {
+    border-bottom: none;
+}
+
+.schedule-time {
+    padding: 6px 12px;
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    min-width: 85px;
+    text-align: center;
+}
+
+.schedule-info h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--dark);
+}
+
+.schedule-info p {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* Profile Summary Sidebar Card */
+.profile-summary-card {
+    text-align: center;
+}
+
+.profile-summary-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 16px auto;
+    border: 3px solid var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+.profile-summary-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 4px;
+}
+
+.profile-summary-card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+/* Switch styling for Online Status */
+.status-toggle-wrapper {
+    background-color: var(--light-grey);
+    padding: 16px 20px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    border: 1px solid var(--border-color);
+}
+
+.status-toggle-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-dot-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--success);
+}
+.status-dot-indicator.offline {
+    background-color: var(--text-muted);
+}
+
+/* Toggle Switch slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 26px;
+}
+
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider-toggle {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #cbd5e1;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider-toggle:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider-toggle {
+    background-color: var(--primary-color);
+}
+
+input:checked + .slider-toggle:before {
+    transform: translateX(22px);
+}
+
+/* Service Settings Management */
+.services-manage-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.service-manage-item {
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: var(--transition-smooth);
+}
+
+.service-manage-item.active {
+    border-color: rgba(53, 93, 183, 0.4);
+    background-color: #f8faff;
+}
+
+.service-manage-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.service-manage-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.service-manage-info h4 {
+    font-size: 15px;
+    margin-bottom: 2px;
+}
+
+.service-manage-info p {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.service-manage-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.service-manage-right span {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.service-price-input {
+    width: 70px;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 700;
+    color: var(--dark);
+    font-size: 14px;
+}
+.service-price-input:focus {
+    border-color: var(--primary-color);
+}
+
+/* Custom Table Overrides */
+.bookings-section {
+    padding: 0;
+    box-shadow: none;
+    background: transparent;
+    border: none;
+}
+
+/* Provider Dashboard Responsiveness */
+@media (max-width: 991px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}

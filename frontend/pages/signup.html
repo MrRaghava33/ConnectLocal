@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - ConnectLocal</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/signup.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+    <!-- Main Auth Wrapper -->
+    <main class="auth-wrapper">
+        
+        <!-- Left Side: Interactive Steps Form -->
+        <section class="left-panel">
+            <header class="auth-header">
+                <a href="../index.html" class="logo">
+                    <img src="../assets/logo/logo.svg" alt="ConnectLocal Logo" style="height: 38px; width: auto; display: block;">
+                </a>
+            </header>
+
+            <!-- STEP 1 OF 2: Role Selection -->
+            <div id="step-1" class="step-container">
+                <div class="step-header">
+                    <span class="step-indicator">Step 1 of 2</span>
+                    <h2>How will you use ConnectLocal?</h2>
+                    <p>Choose an option to get started</p>
+                </div>
+
+                <div class="role-options">
+                    <!-- Seeker Choice Card -->
+                    <div class="role-card active" data-role="seeker" onclick="selectRole('seeker')">
+                        <div class="role-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="role-info">
+                            <h3>I need a service</h3>
+                            <p>Find verified professionals for home repairs, cleaning, coaching, gardening and more.</p>
+                        </div>
+                        <div class="role-checkmark">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+
+                    <!-- Provider Choice Card -->
+                    <div class="role-card" data-role="provider" onclick="selectRole('provider')">
+                        <div class="role-icon">
+                            <i class="fas fa-wrench"></i>
+                        </div>
+                        <div class="role-info">
+                            <h3>I provide a service</h3>
+                            <p>List your local business, reach new neighborhood customers, and grow your reputation.</p>
+                        </div>
+                        <div class="role-checkmark">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: auto;">
+                    <button type="button" id="btn-step1-continue" class="btn btn-primary btn-auth-submit" style="margin-bottom: 24px;">Continue</button>
+                    
+                    <div class="auth-footer-link">
+                        <p>Already have an account? <a href="login.html">Log in</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2 OF 2: Registration Fields -->
+            <div id="step-2" class="step-container" style="display: none;">
+                <div>
+                    <!-- Back Button -->
+                    <div class="back-button" id="btn-back-step1">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Change role</span>
+                    </div>
+
+                    <div class="step-header">
+                        <span class="step-indicator" id="step2-indicator-bar">Step 2 of 2</span>
+                        <h2>Create your account</h2>
+                        <p>Enter your details below to set up your profile</p>
+                    </div>
+
+                    <form id="signup-form" onsubmit="return false;">
+                        <!-- Full Name & Phone Row -->
+                        <div class="form-row">
+                            <div class="form-group form-group-auth">
+                                <label for="fullName" class="form-label">Full Name</label>
+                                <input type="text" id="fullName" class="form-input" placeholder="e.g. John Doe" required>
+                            </div>
+                            <div class="form-group form-group-auth">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" id="phone" class="form-input" placeholder="e.g. 123-456-7890" required>
+                            </div>
+                        </div>
+
+                        <!-- Email Address -->
+                        <div class="form-group form-group-auth">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" class="form-input" placeholder="name@example.com" required>
+                        </div>
+
+                        <!-- Service Category & Area Row (Provider Only) -->
+                        <div class="form-row provider-field" style="display: none;">
+                            <div class="form-group form-group-auth">
+                                <label for="category" class="form-label">Service Category</label>
+                                <select id="category" class="form-input">
+                                    <option value="" disabled selected>Select trade category</option>
+                                    <option value="Electrician">Electrician</option>
+                                    <option value="Plumber">Plumber</option>
+                                    <option value="Tutor">Tutor</option>
+                                    <option value="Cleaning">Cleaning</option>
+                                    <option value="Handyman">Handyman</option>
+                                    <option value="Pet Care">Pet Care</option>
+                                    <option value="Gardening">Gardening</option>
+                                </select>
+                            </div>
+                            <div class="form-group form-group-auth">
+                                <label for="location" class="form-label">Service Area / Location</label>
+                                <input type="text" id="location" class="form-input" placeholder="e.g. Downtown, City Center">
+                            </div>
+                        </div>
+
+                        <!-- Password Fields Row -->
+                        <div class="form-row">
+                            <div class="form-group form-group-auth">
+                                <label for="password" class="form-label">Password</label>
+                                <div class="password-toggle-container">
+                                    <input type="password" id="password" class="form-input" placeholder="Min. 8 chars" required>
+                                    <i class="far fa-eye input-icon" id="toggle-password"></i>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-auth">
+                                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                <div class="password-toggle-container">
+                                    <input type="password" id="confirmPassword" class="form-input" placeholder="Match password" required>
+                                    <i class="far fa-eye input-icon" id="toggle-confirm-password"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Terms Checkbox -->
+                        <div class="terms-checkbox">
+                            <input type="checkbox" id="terms" required>
+                            <label for="terms">I accept ConnectLocal's <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>.</label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" id="btn-signup" class="btn btn-primary btn-auth-submit">Create Account</button>
+                    </form>
+                </div>
+
+                <div style="margin-top: 24px;">
+                    <div class="auth-footer-link">
+                        <p>Already have an account? <a href="login.html">Log in</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Side: Graphic Sidebar -->
+        <section class="right-panel">
+            <!-- Deco Floating Shapes -->
+            <div class="deco-shape circle-deco"></div>
+            <div class="deco-shape triangle-deco"></div>
+            <div class="deco-shape square-deco"></div>
+
+            <div class="graphic-container">
+                <div class="hexagon-wrapper">
+                    <!-- Glow hexagon SVG background -->
+                    <div class="hex-glow"></div>
+                    <!-- Service expert photo -->
+                    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=400&fit=crop&q=80" alt="ConnectLocal Pro" class="hex-avatar">
+                    <div class="hex-icon-overlay">
+                        <i class="fas fa-wrench"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial / Features Slider -->
+            <div class="slider-caption">
+                <h3 id="slider-title">Find Trusted Help, Anywhere Nearby</h3>
+                <p id="slider-desc">Connect with verified local professionals for home repairs, maintenance, academic tutoring, and lifestyle services.</p>
+                <div class="slider-dots">
+                    <span class="dot active" onclick="switchSlide(0)"></span>
+                    <span class="dot" onclick="switchSlide(1)"></span>
+                    <span class="dot" onclick="switchSlide(2)"></span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Project JS Modules -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/validation.js"></script>
+    <script src="../js/api.js"></script>
+    <!-- We can reuse login's slider animations -->
+    <script src="../js/login.js"></script>
+    <script src="../js/signup.js"></script>
+</body>
+</html>

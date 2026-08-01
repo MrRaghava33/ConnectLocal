@@ -1,0 +1,59 @@
+/**
+ * ConnectLocal Responsive Media Queries (Mobile First approach)
+ */
+
+/* Small Devices (Landscape Phones / Tablets, 576px and up) */
+@media (min-width: 576px) {
+    .container {
+        padding: 0 32px;
+    }
+}
+
+/* Medium Devices (Tablets, 768px and up) */
+@media (min-width: 768px) {
+    .section {
+        padding: 100px 0;
+    }
+
+    /* Grids */
+    .grid-2, .grid-3, .grid-4 {
+        display: grid;
+        gap: 30px;
+    }
+    
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(2, 1fr); } /* 2 columns on tablet, 3 on desktop */
+    .grid-4 { grid-template-columns: repeat(2, 1fr); } /* 2 columns on tablet, 4 on desktop */
+}
+
+/* Large Devices (Desktops, 992px and up) */
+@media (min-width: 992px) {
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    
+    /* Layout shifts */
+    .desktop-only {
+        display: block !important;
+    }
+    .mobile-only {
+        display: none !important;
+    }
+}
+
+/* Extra Large Devices (Large Desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+    .btn, .glass-nav, footer {
+        display: none !important;
+    }
+}

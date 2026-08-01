@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard - ConnectLocal</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/service-seeker.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+    <!-- Main Grid Dashboard Wrapper -->
+    <div class="dashboard-wrapper">
+        
+        <!-- Left Fixed Navigation Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <i class="fas fa-handshake"></i>
+                <span>ConnectLocal</span>
+            </div>
+
+            <nav class="sidebar-menu">
+                <div class="sidebar-item active" id="menu-dashboard" onclick="switchTab('dashboard')">
+                    <i class="fas fa-th-large"></i>
+                    <span>Dashboard</span>
+                </div>
+                <div class="sidebar-item" id="menu-services" onclick="switchTab('dashboard')">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Professional Services</span>
+                </div>
+                <div class="sidebar-item" id="menu-bookings" onclick="switchTab('bookings')">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>My Services</span>
+                </div>
+                <div class="sidebar-item" id="menu-settings" onclick="switchTab('settings')">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="sidebar-item" onclick="Utils.logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Scrollable Panel -->
+        <main class="main-content">
+            
+            <!-- Header Top Bar -->
+            <header class="topbar">
+                <!-- Search bar in header -->
+                <div class="seeker-search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="global-search-input" placeholder="Search services...">
+                </div>
+
+                <div class="topbar-actions">
+                    <div class="notification-bell">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-dot"></span>
+                    </div>
+                    <!-- User Initial Circle Avatar -->
+                    <div class="user-avatar" id="avatar-circle">JD</div>
+                </div>
+            </header>
+
+            <!-- TAB 1: Search & Browse Providers (Dashboard) -->
+            <section id="tab-dashboard-view">
+                
+                <!-- Horizontal Category Filter Chips -->
+                <div class="category-chips-wrapper">
+                    <h3 class="category-chips-title">Browse Categories</h3>
+                    <div class="chips-container" id="category-chips-list">
+                        <span class="chip active" onclick="filterCategory('All', this)">All</span>
+                        <span class="chip" onclick="filterCategory('Electrician', this)">Electrician</span>
+                        <span class="chip" onclick="filterCategory('Plumber', this)">Plumber</span>
+                        <span class="chip" onclick="filterCategory('Tutor', this)">Tutor</span>
+                        <span class="chip" onclick="filterCategory('Cleaning', this)">Cleaning</span>
+                        <span class="chip" onclick="filterCategory('Handyman', this)">Handyman</span>
+                        <span class="chip" onclick="filterCategory('Pet Care', this)">Pet Care</span>
+                        <span class="chip" onclick="filterCategory('Gardening', this)">Gardening</span>
+                    </div>
+                </div>
+
+                <!-- Section Grid Header -->
+                <div class="providers-section-header">
+                    <h2 id="listings-title">Available Service Providers</h2>
+                    <span class="providers-count" id="providers-count">0 professionals found</span>
+                </div>
+
+                <!-- Listings Grid -->
+                <div class="providers-grid" id="providers-grid-list">
+                    <!-- Dynamic Provider Cards go here -->
+                </div>
+
+            </section>
+
+            <!-- TAB 2: Provider Detail & Slot Booking View -->
+            <section id="tab-detail-view" class="detail-view-container">
+                <!-- Breadcrumbs -->
+                <div class="breadcrumbs">
+                    <a href="#" onclick="goBackToBrowse(event)">Home</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="#" onclick="goBackToBrowse(event)">Services</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span id="breadcrumb-active-page">Marcus Thorne</span>
+                </div>
+
+                <div class="detail-layout-grid">
+                    <!-- Left Side Details -->
+                    <div class="detail-left">
+                        <img id="detail-main-image" src="" alt="Service Display" class="gallery-main-img">
+                        
+                        <div class="detail-provider-header">
+                            <div class="detail-provider-info">
+                                <img id="detail-provider-avatar" src="" alt="Provider Avatar" class="detail-provider-avatar">
+                                <div class="detail-name-row">
+                                    <h3 id="detail-provider-name">Marcus Thorne <i class="fas fa-check-circle verified-badge"></i></h3>
+                                    <div class="detail-provider-sub">
+                                        <span id="detail-provider-title">Landscape Gardener</span>
+                                        <span><i class="fas fa-map-marker-alt"></i> <span id="detail-provider-distance">Green Hills (1.4 miles)</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-secondary" onclick="Utils.showToast('Chat service will be integrated soon.', 'info')">
+                                <i class="far fa-comment-dots"></i> Message
+                            </button>
+                        </div>
+
+                        <div class="tag-container" id="detail-tag-container">
+                            <span class="tag-badge">Premium Gardening</span>
+                            <span class="tag-badge">Lawn Mowing</span>
+                        </div>
+
+                        <div class="about-section">
+                            <h4>About this service</h4>
+                            <p id="detail-about-text">Complete landscape design, hedge trimming, weed control, and garden planning. Reliable service using premium organic treatments.</p>
+                        </div>
+                    </div>
+
+                    <!-- Right Side booking widget -->
+                    <div class="card booking-widget">
+                        <div class="widget-price-bar">
+                            <span class="widget-label">STARTING AT</span>
+                            <span class="widget-price" id="widget-hourly-rate">$45<span>/hour</span></span>
+                        </div>
+
+                        <form id="booking-form" onsubmit="return false;">
+                            <!-- Date Selector -->
+                            <div class="form-group">
+                                <label for="booking-date" class="form-label">Select Date</label>
+                                <input type="date" id="booking-date" class="form-input" required>
+                            </div>
+
+                            <!-- Slots Grid Selection -->
+                            <div class="form-group">
+                                <label class="form-label">Available Slots</label>
+                                <div class="slots-grid" id="slots-grid-list">
+                                    <button type="button" class="slot-btn" onclick="selectSlot('09:00 AM', this)">09:00 AM</button>
+                                    <button type="button" class="slot-btn" onclick="selectSlot('11:30 AM', this)">11:30 AM</button>
+                                    <button type="button" class="slot-btn" onclick="selectSlot('02:00 PM', this)">02:00 PM</button>
+                                    <button type="button" class="slot-btn" onclick="selectSlot('04:30 PM', this)">04:30 PM</button>
+                                    <button type="button" class="slot-btn" onclick="selectSlot('06:00 PM', this)">06:00 PM</button>
+                                </div>
+                            </div>
+
+                            <!-- Notes -->
+                            <div class="form-group">
+                                <label for="booking-notes" class="form-label">Notes for Provider (Optional)</label>
+                                <textarea id="booking-notes" class="notes-area" placeholder="e.g. Please bring a ladder for high hedges..."></textarea>
+                            </div>
+
+                            <!-- Submit Request -->
+                            <button type="submit" id="btn-request-booking" class="btn btn-primary" style="width: 100%; border-radius: 12px; height: 50px;">Request Booking</button>
+
+                            <div class="guarantee-box">
+                                <i class="fas fa-shield-alt"></i>
+                                <div>
+                                    <strong>Community Guarantee</strong>
+                                    <p>All bookings are insured up to $10,000 for property damages and backed by 24/7 support.</p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: My Services Bookings View -->
+            <section id="tab-bookings-view" style="display: none;">
+                <div class="bookings-section">
+                    <h2>My Booked Services</h2>
+                    
+                    <div class="table-wrapper">
+                        <table class="booking-table">
+                            <thead>
+                                <tr>
+                                    <th>Booking ID</th>
+                                    <th>Service Provider</th>
+                                    <th>Category</th>
+                                    <th>Date & Slot</th>
+                                    <th>Rate (est.)</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bookings-table-rows">
+                                <!-- Dynamic bookings populate here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: Settings View -->
+            <section id="tab-settings-view" style="display: none;">
+                <div class="bookings-section" style="max-width: 600px;">
+                    <h2>Account Settings</h2>
+                    
+                    <form id="settings-form" onsubmit="saveSettings(event)">
+                        <div class="form-group">
+                            <label for="settings-name" class="form-label">Full Name</label>
+                            <input type="text" id="settings-name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="settings-email" class="form-label">Email Address</label>
+                            <input type="email" id="settings-email" class="form-input" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="settings-phone" class="form-label">Phone Number</label>
+                            <input type="tel" id="settings-phone" class="form-input" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="border-radius: 12px;">Save Profile Changes</button>
+                    </form>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Script modules -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/validation.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/service-seeker.js"></script>
+</body>
+</html>

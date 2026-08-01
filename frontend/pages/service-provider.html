@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Provider Dashboard - ConnectLocal</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/service-provider.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+    <!-- Main Dashboard Grid Wrapper -->
+    <div class="dashboard-wrapper">
+        
+        <!-- Left Fixed Navigation Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <i class="fas fa-handshake"></i>
+                <span>ConnectLocal</span>
+            </div>
+
+            <nav class="sidebar-menu">
+                <div class="sidebar-item active" id="menu-prov-dashboard" onclick="switchProviderTab('dashboard')">
+                    <i class="fas fa-th-large"></i>
+                    <span>Dashboard</span>
+                </div>
+                <div class="sidebar-item" id="menu-prov-services" onclick="switchProviderTab('services')">
+                    <i class="fas fa-tools"></i>
+                    <span>My Services</span>
+                </div>
+                <div class="sidebar-item" id="menu-prov-bookings" onclick="switchProviderTab('bookings')">
+                    <i class="fas fa-list-ul"></i>
+                    <span>Bookings</span>
+                </div>
+                <div class="sidebar-item" id="menu-prov-profile" onclick="switchProviderTab('profile')">
+                    <i class="fas fa-user-tie"></i>
+                    <span>Profile</span>
+                </div>
+                <div class="sidebar-item" id="menu-prov-settings" onclick="switchProviderTab('profile')">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="sidebar-item" onclick="Utils.logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Scrollable Content Area -->
+        <main class="main-content">
+            
+            <!-- Header Top Bar -->
+            <header class="topbar">
+                <!-- Search bar -->
+                <div class="seeker-search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search orders or clients...">
+                </div>
+
+                <div class="topbar-actions">
+                    <div class="notification-bell">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-dot" id="provider-noti-dot"></span>
+                    </div>
+                    <!-- User Avatar -->
+                    <img id="header-avatar" src="" alt="User Avatar" class="user-avatar" style="object-fit: cover;">
+                </div>
+            </header>
+
+            <!-- TAB 1: Main Provider Overview Dashboard -->
+            <section id="tab-prov-dashboard">
+                <!-- Business Statistics Grid -->
+                <div class="stats-grid">
+                    <!-- Stat Card: Total Earnings -->
+                    <div class="stat-card">
+                        <div class="stat-icon stat-icon-earnings">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3 id="stat-earnings">$0.00</h3>
+                            <p>Total Earnings</p>
+                        </div>
+                    </div>
+
+                    <!-- Stat Card: Jobs Done -->
+                    <div class="stat-card">
+                        <div class="stat-icon stat-icon-bookings">
+                            <i class="fas fa-check-double"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3 id="stat-completed-count">0</h3>
+                            <p>Jobs Completed</p>
+                        </div>
+                    </div>
+
+                    <!-- Stat Card: Pending Requests -->
+                    <div class="stat-card">
+                        <div class="stat-icon stat-icon-requests">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3 id="stat-pending-count">0</h3>
+                            <p>Pending Requests</p>
+                        </div>
+                    </div>
+
+                    <!-- Stat Card: Completion Rate -->
+                    <div class="stat-card">
+                        <div class="stat-icon stat-icon-rate">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3 id="stat-completion-rate">100%</h3>
+                            <p>Completion Rate</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Layout Split -->
+                <div class="dashboard-grid">
+                    
+                    <!-- Left Side Columns: Booking Requests & Schedule -->
+                    <div>
+                        <!-- Recent Requests Panel -->
+                        <div class="dashboard-panel">
+                            <h2>Recent Requests <span class="providers-count" id="pending-badge-count">0 pending</span></h2>
+                            <div id="recent-requests-list">
+                                <!-- Requests dynamically injected here -->
+                            </div>
+                        </div>
+
+                        <!-- Today's Bookings Schedule -->
+                        <div class="dashboard-panel">
+                            <h2>Today's Bookings</h2>
+                            <div id="today-bookings-list">
+                                <!-- Today's schedule items injected here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side Column: Profile Status & Ratings -->
+                    <div>
+                        <!-- Profile Status Card -->
+                        <div class="card dashboard-panel profile-summary-card">
+                            <img id="summary-avatar" src="" alt="Provider Profile Pic" class="profile-summary-avatar">
+                            <h3 id="summary-name">Marcus Rivera</h3>
+                            <p id="summary-title">Master Electrician</p>
+
+                            <!-- Online/Offline Status Switch Slider -->
+                            <div class="status-toggle-wrapper">
+                                <div class="status-toggle-label">
+                                    <span class="status-dot-indicator" id="summary-status-dot"></span>
+                                    <span id="summary-status-text">Online</span>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="status-toggle-switch" checked onchange="toggleOnlineStatus(this)">
+                                    <span class="slider-toggle"></span>
+                                </label>
+                            </div>
+
+                            <div style="text-align: left; padding-top: 10px; border-top: 1px solid var(--border-color);">
+                                <div class="provider-rating" style="justify-content: center; font-size: 16px; margin-bottom: 8px;">
+                                    <i class="fas fa-star" style="color: var(--warning);"></i> 
+                                    <strong id="summary-rating">4.9</strong> 
+                                    <span id="summary-reviews-count">(142 reviews)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- TAB 2: Services Offered Management -->
+            <section id="tab-prov-services" style="display: none;">
+                <div class="card dashboard-panel">
+                    <h2>Manage Offered Services</h2>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px;">Configure the services you offer to seekers and set your hourly service pricing.</p>
+
+                    <div class="services-manage-grid" id="services-manage-list">
+                        <!-- Dynamically filled with trade checkboxes -->
+                    </div>
+
+                    <button type="button" class="btn btn-primary" onclick="saveServicesPricing()" style="margin-top: 30px; border-radius: 12px;">Save Service List</button>
+                </div>
+            </section>
+
+            <!-- TAB 3: Provider All Bookings list -->
+            <section id="tab-prov-bookings" style="display: none;">
+                <div class="card dashboard-panel">
+                    <h2>All Bookings</h2>
+                    
+                    <div class="table-wrapper">
+                        <table class="booking-table">
+                            <thead>
+                                <tr>
+                                    <th>Booking ID</th>
+                                    <th>Customer</th>
+                                    <th>Date & Slot</th>
+                                    <th>Notes</th>
+                                    <th>Rate (est.)</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="provider-bookings-rows">
+                                <!-- Dynamic rows go here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: Profile Details & Settings -->
+            <section id="tab-prov-profile" style="display: none;">
+                <div class="card dashboard-panel" style="max-width: 700px;">
+                    <h2>Profile Information</h2>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px;">Update details visible to prospective local service seekers.</p>
+
+                    <form id="provider-profile-form" onsubmit="saveProviderProfile(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="profile-name" class="form-label">Full Name</label>
+                                <input type="text" id="profile-name" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-title" class="form-label">Specialty Title</label>
+                                <input type="text" id="profile-title" class="form-input" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="profile-phone" class="form-label">Phone Number</label>
+                                <input type="tel" id="profile-phone" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-location" class="form-label">Service Area</label>
+                                <input type="text" id="profile-location" class="form-input" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="profile-details" class="form-label">Service Description / Bio</label>
+                            <textarea id="profile-details" class="notes-area" style="height: 120px;" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="border-radius: 12px;">Save Profile Details</button>
+                    </form>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Script modules -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/validation.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/service-provider.js"></script>
+</body>
+</html>
